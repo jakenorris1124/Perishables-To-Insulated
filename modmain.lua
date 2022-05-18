@@ -14,9 +14,9 @@ local function wearingIcePack()
     local packType = Player.replica.inventory:GetEquippedItem("body")
 
     if packType~=nil and packType.prefab == "icepack" then
-        return true
+        return packType
     end
-    return false
+    return nil
 end
 
 local function isPerishable(inst, data)
@@ -28,8 +28,8 @@ end
 
 local function pickupEvent(inst)
     inst:ListenForEvent("gotnewitem", function(inst, data)
-        if wearingIcePack() and isPerishable(inst, data) then
-            print("Perishable Picked Up and Ice Pack On")
+        local equipped_icepack = wearingIcePack()
+        if equipped_icepack ~= nil and isPerishable(inst, data) then
         end
     end)
 end
