@@ -19,6 +19,13 @@ local function wearingIcePack()
     return false
 end
 
+local function isPerishable(inst, data)
+    if data.item:HasTag("fresh") or data.item:HasTag("stale") or data.item:HasTag("spoiled") then
+        return true
+    end
+    return false
+end
+
 local function pickupEvent(inst)
         inst:ListenForEvent("gotnewitem", function(inst, data)
             if data.item:HasTag("fresh") or data.item:HasTag("stale") or data.item:HasTag("spoiled") then
