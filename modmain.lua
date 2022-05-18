@@ -27,18 +27,18 @@ local function isPerishable(inst, data)
 end
 
 local function pickupEvent(inst)
-        inst:ListenForEvent("gotnewitem", function(inst, data)
-            if data.item:HasTag("fresh") or data.item:HasTag("stale") or data.item:HasTag("spoiled") then
-                print("Perishable Picked Up")
-            end
+    inst:ListenForEvent("gotnewitem", function(inst, data)
+        if wearingIcePack() and isPerishable(inst, data) then
+            print("Perishable Picked Up and Ice Pack On")
+        end
     end)
 end
 
 local function init(inst)
     inst:DoTaskInTime(1,function()
-    Player = GLOBAL.ThePlayer
+        Player = GLOBAL.ThePlayer
 
-    pickupEvent(inst)
+        pickupEvent(inst)
     end)
 end
 AddPlayerPostInit(init)
