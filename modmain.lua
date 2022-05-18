@@ -10,6 +10,15 @@ Description: Mod that automatically moves perishables to an insulated pack if th
 
 local Player
 
+local function wearingIcePack()
+    local packType = Player.replica.inventory:GetEquippedItem("body")
+
+    if packType~=nil and packType.prefab == "icepack" then
+        return true
+    end
+    return false
+end
+
 local function pickupEvent(inst)
         inst:ListenForEvent("gotnewitem", function(inst, data)
             if data.item:HasTag("fresh") or data.item:HasTag("stale") or data.item:HasTag("spoiled") then
