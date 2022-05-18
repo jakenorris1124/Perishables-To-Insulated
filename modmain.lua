@@ -11,14 +11,8 @@ Description: Mod that automatically moves perishables to an insulated pack if th
 local function pickupEvent(inst)
     inst:DoTaskInTime(1,function()
         inst:ListenForEvent("gotnewitem", function(inst, data)
-            if data.item:HasTag("fresh") then
-                print("Fresh Item Picked Up")
-            end
-            if data.item:HasTag("stale") then
-                print("Stale Item Picked Up")
-            end
-            if data.item:HasTag("spoiled") then
-                print("Spoiled Item Picked Up")
+            if data.item:HasTag("fresh") or data.item:HasTag("stale") or data.item:HasTag("spoiled") then
+                print("Perishable Picked Up")
             end
         end)
     end)
