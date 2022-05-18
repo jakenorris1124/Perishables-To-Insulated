@@ -8,6 +8,8 @@ Description: Mod that automatically moves perishables to an insulated pack if th
 
 ]]
 
+local Player
+
 local function pickupEvent(inst)
     inst:DoTaskInTime(1,function()
         inst:ListenForEvent("gotnewitem", function(inst, data)
@@ -17,4 +19,10 @@ local function pickupEvent(inst)
         end)
     end)
 end
-AddPlayerPostInit(pickupEvent)
+
+local function init(inst)
+    Player = GLOBAL.ThePlayer
+
+    pickupEvent(inst)
+end
+AddPlayerPostInit(init)
