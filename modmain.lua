@@ -8,6 +8,11 @@ Description: Mod that automatically moves perishables to an insulated pack if th
 
 ]]
 
-function inventorypostinit(component,inst)
-    print("hello inventory init!")
+local function pickupEvent(inst)
+    inst:DoTaskInTime(1,function()
+        inst:ListenForEvent("gotnewitem", function(inst, data)
+            print("Item picked up")
+        end)
+    end)
 end
+AddPlayerPostInit(pickupEvent)
