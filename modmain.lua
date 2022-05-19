@@ -13,7 +13,7 @@ local Player
 local function wearingIcePack()
     local packType = Player.replica.inventory:GetEquippedItem("body")
 
-    if packType~=nil and packType.prefab == "icepack" then
+    if packType ~= nil and packType.prefab == "icepack" then
         return packType
     end
     return nil
