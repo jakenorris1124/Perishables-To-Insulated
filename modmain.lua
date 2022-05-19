@@ -20,7 +20,7 @@ local function wearingIcePack()
 end
 
 local function isPerishable(inst, data)
-    if data.item:HasTag("fresh") or data.item:HasTag("stale") or data.item:HasTag("spoiled") then
+    if data.item.components.perishable ~= nil then
         return true
     end
     return false
