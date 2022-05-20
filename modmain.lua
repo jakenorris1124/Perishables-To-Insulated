@@ -13,7 +13,7 @@ local deepcopy = GLOBAL.deepcopy
 
 params.icepack = deepcopy(params.backpack)
 
-function isPerishable(container, item, slot)
+local function isPerishable(container, item, slot)
     return (item:HasTag("fresh") or item:HasTag("stale") or item:HasTag("spoiled"))
 end
 
