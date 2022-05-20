@@ -7,8 +7,8 @@ restart_required = false
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
-dont_starve_compatible = true
-reign_of_giants_compatible = true
+dont_starve_compatible = false
+reign_of_giants_compatible = false
 all_clients_require_mod = false
 dst_compatible = true
 client_only_mod = true
