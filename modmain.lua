@@ -11,6 +11,8 @@ Description: Mod that automatically moves perishables to an insulated pack if th
 local params = require("containers").params
 local deepcopy = GLOBAL.deepcopy
 
+params.icepack = deepcopy(params.backpack)
+
 function priorityfn(container, item, slot)
     return (item:HasTag("fresh") or item:HasTag("stale") or item:HasTag("spoiled"))
 end
