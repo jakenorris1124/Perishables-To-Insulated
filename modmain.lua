@@ -8,37 +8,11 @@ Description: Mod that automatically moves perishables to an insulated pack if th
 
 ]]
 
-local Player
+local params = require("containers").params
+local deepcopy = GLOBAL.deepcopy
 
-local function wearingIcePack()
-    local packType = Player.replica.inventory:GetEquippedItem("body")
-
-    if packType ~= nil and packType.prefab == "icepack" then
-        return packType
-    end
-    return nil
+function priorityfn(container, item, slot)
+    return item.components.perishable ~= nil
 end
 
-local function isPerishable(inst, data)
-    if data.item.components.perishable ~= nil then
-        return true
-    end
-    return false
-end
-
-local function pickupEvent(inst)
-    inst:ListenForEvent("gotnewitem", function(inst, data)
-        local equipped_icepack = wearingIcePack()
-        if equipped_icepack ~= nil and isPerishable(inst, data) then
-        end
-    end)
-end
-
-local function init(inst)
-    inst:DoTaskInTime(1,function()
-        Player = GLOBAL.ThePlayer
-
-        pickupEvent(inst)
-    end)
-end
-AddPlayerPostInit(init)
+params.icepack.priorityfn = priorityfn
