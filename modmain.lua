@@ -13,8 +13,8 @@ local deepcopy = GLOBAL.deepcopy
 
 params.icepack = deepcopy(params.backpack)
 
-function priorityfn(container, item, slot)
+function isPerishable(container, item, slot)
     return (item:HasTag("fresh") or item:HasTag("stale") or item:HasTag("spoiled"))
 end
 
-params.icepack.priorityfn = priorityfn
+params.icepack.priorityfn = isPerishable
