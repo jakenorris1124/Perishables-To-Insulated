@@ -12,7 +12,7 @@ local params = require("containers").params
 local deepcopy = GLOBAL.deepcopy
 
 function priorityfn(container, item, slot)
-    return item.components.perishable ~= nil
+    return (item:HasTag("fresh") or item:HasTag("stale") or item:HasTag("spoiled"))
 end
 
 params.icepack.priorityfn = priorityfn
